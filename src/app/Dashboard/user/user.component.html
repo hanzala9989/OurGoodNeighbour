@@ -1,0 +1,191 @@
+<mat-card class="cardResponsive">
+    <mat-card-header>
+        <mat-icon *ngIf="this.level == 'edit'" matRipple (click)="goBack();"
+        [matRippleCentered]="centered"
+        [matRippleDisabled]="disabled"
+        [matRippleUnbounded]="unbounded" style="margin-right: 12px;">arrow_back</mat-icon>
+        {{level === 'edit' ? labels.Edit_User : level == 'profile' ? 'Update Profile' :labels.Create_User}}
+    </mat-card-header>
+    <mat-card-content>
+        <form #createEvent="ngForm">
+            <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="1%" fxLayoutAlign="flex-start">
+                <!-- User Name field -->
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+                    fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>User Name</mat-label>
+                    <input matInput placeholder="User Name" name="username" id="username" #username="ngModel"
+                        [(ngModel)]="saveUserObject.username" required>
+                    <mat-error *ngIf="username.invalid && (username.dirty || username.touched)" style="color: red;">
+                        <ng-container *ngIf="username.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+                <!-- User Email field -->
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+                    fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>User Email</mat-label>
+                    <input matInput type="email" placeholder="User Email" name="userEmail" id="userEmail"
+                        #userEmail="ngModel" [(ngModel)]="saveUserObject.userEmail" required>
+                    <mat-error *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)" style="color: red;">
+                        <ng-container *ngIf="userEmail.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+                <!-- User Password field -->
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+                    fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>User Password</mat-label>
+                    <input matInput type="password" placeholder="User Password" name="userPassword" id="userPassword"
+                        #userPassword="ngModel" [(ngModel)]="saveUserObject.userPassword" required>
+                    <mat-error *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)"
+                        style="color: red;">
+                        <ng-container *ngIf="userPassword.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Date of Birth field -->
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+                    fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label> Date of Birth </mat-label>
+                    <input matInput [matDatepicker]="picker" name="dob" id="dob" [(ngModel)]="selectedDate"
+                        (dateChange)="dateChanged($event)" #datepiker="ngModel" placeholder="Date of Birth"
+                        [max]="minDate" readonly required>
+                    <mat-datepicker-toggle matSuffix [for]="picker" required></mat-datepicker-toggle>
+                    <mat-datepicker #picker [disabled]="false"></mat-datepicker>
+                    <mat-error *ngIf="datepiker.invalid && (datepiker.dirty || datepiker.touched)" style="color: red;">
+                        <ng-container *ngIf="datepiker.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Role field -->
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)" appearance="outline">
+                    <mat-label>Role</mat-label>
+                    <mat-select placeholder="Role" id="role" name="role" #roleName="ngModel"
+                        [(ngModel)]="saveUserObject.roleName" required>
+                        <mat-option *ngFor="let mod of RoleList" [value]="mod">{{mod}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="roleName.invalid && (roleName.dirty || roleName.touched)" style="color: red;">
+                        <ng-container *ngIf="roleName.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+                <!-- Role field -->
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)" appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select placeholder="Gender" id="gender11" name="gender11" #gender11="ngModel"
+                        [(ngModel)]="saveUserObject.gender" required>
+                        <mat-option *ngFor="let mod of GenderList" [value]="mod">{{mod}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="gender11.invalid && (gender11.dirty || gender11.touched)" style="color: red;">
+                        <ng-container *ngIf="gender11.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+
+                <!-- User Phone field -->
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+                    fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>User Phone</mat-label>
+                    <input matInput type="phone" placeholder="User Phone" name="userPhone" id="userPhone"
+                        #userPhone="ngModel" [(ngModel)]="saveUserObject.phoneNumber" required  pattern="[0-9]*">
+                    <mat-error *ngIf="userPhone.invalid && (userPhone.dirty || userPhone.touched)" style="color: red;">
+                        <ng-container *ngIf="userPhone.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Status field -->
+                <mat-form-field *ngIf="level === 'edit' || level == 'profile'" [floatLabel]="labels.floatLabel"
+                    fxFlex="0 1 calc(25% - 32px)" appearance="outline">
+                    <mat-label>Account Status</mat-label>
+                    <mat-select placeholder="Account Status" id="status" name="status" #status="ngModel"
+                        [(ngModel)]="saveUserObject.accountStatus" required>
+                        <mat-option *ngFor="let mod of statusList" [value]="mod">{{mod}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="status.invalid && (status.dirty || status.touched)" style="color: red;">
+                        <ng-container *ngIf="status.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+        <mat-toolbar style="text-align: center;"
+            *ngIf=" level == 'edit' && level != 'profile' && userEventObjectList.length === 0">
+            No Data Found
+        </mat-toolbar>
+
+        <mat-card *ngIf="userEventObjectList.length !== 0 && level == 'edit' && level != 'profile'">
+            <mat-card-header>
+                User Attended Event
+            </mat-card-header>
+            <mat-card-content>
+                <div class="mat-elevation-z8 table-container">
+                    <table mat-table [dataSource]="dataSource" matSort *ngIf="userEventObjectList.length !== 0">
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="eventID">
+                            <th mat-header-cell *matHeaderCellDef  fxFlex="20"> Event ID </th>
+                            <td mat-cell *matCellDef="let row" fxFlex="20"> {{row.eventID}} </td>
+                        </ng-container>
+
+                        <!-- Progress Column -->
+                        <ng-container matColumnDef="eventName">
+                            <th mat-header-cell *matHeaderCellDef  fxFlex="20"> Event Name </th>
+                            <td mat-cell *matCellDef="let row" fxFlex="20"> {{row.eventName}}</td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="eventDate">
+                            <th mat-header-cell *matHeaderCellDef  fxFlex="20"> Event Date </th>
+                            <td mat-cell *matCellDef="let row" fxFlex="20"> {{commonService.getFormattedDate(row.eventDate)}} </td>
+                        </ng-container>
+
+                        <!-- Fruit Column -->
+                        <ng-container matColumnDef="rewardPoint">
+                            <th mat-header-cell *matHeaderCellDef  fxFlex="20"> Reward Point </th>
+                            <td mat-cell *matCellDef="let row" fxFlex="20">
+                                + <span style="color: green;">{{row.rewardPoint}}</span>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="eventVenue">
+                            <th mat-header-cell *matHeaderCellDef  fxFlex="20"> Event Venue </th>
+                            <td mat-cell *matCellDef="let row" fxFlex="20">
+                                {{row.eventVenue}}
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4" fxFlex="100">No data matching the filter </td>
+                        </tr>
+                    </table>
+                </div>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" style="margin-top: 10px;"
+                    aria-label="Select page of users"></mat-paginator>
+            </mat-card-content>
+        </mat-card>
+        <button *ngIf="level !== 'edit' && level != 'profile'" mat-raised-button class="btn-color"
+            [ngStyle]="{'opacity': !createEvent.form.valid ? '0.5' : '1'}" [disabled]="!createEvent.form.valid"
+            (click)="saveUser();">Submit</button> &nbsp;
+
+        <button *ngIf="level === 'edit' || level == 'profile'" mat-raised-button class="btn-color"
+            [ngStyle]="{'opacity': !createEvent.form.valid ? '0.5' : '1'}" [disabled]="!createEvent.form.valid"
+            (click)="updateuser();">Update</button>
+    </mat-card-content>
+</mat-card>

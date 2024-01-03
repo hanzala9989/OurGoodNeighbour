@@ -1,0 +1,90 @@
+<div class="container">
+  <mat-card class="loginContainer">
+    <h1>SignUp To Volunteer</h1>
+    <p class="account">Create your Volunteer account</p>
+    <mat-card-content>
+      <form #CreateUser="ngForm">
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label> User Name </mat-label>
+            <input matInput appInputRestriction placeholder="User Name " id="userName" name="userName"
+              [(ngModel)]="loginObject.username" #surveyName="ngModel" required>
+          </mat-form-field>
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label> Email </mat-label>
+            <input matInput type="email" appInputRestriction placeholder="Email" id="emailuser" name="emailuser"
+              [(ngModel)]="loginObject.userEmail" #surveyName="ngModel" required>
+          </mat-form-field>
+
+          <!-- Your existing HTML code for password fields -->
+
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label> Password </mat-label>
+            <input matInput type="password" appInputRestriction placeholder="Password" id="userpassword"
+              name="userpassword" [(ngModel)]="loginObject.userPassword" #surveyName="ngModel" required>
+          </mat-form-field>
+
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label> Re-Password </mat-label>
+            <input matInput type="password" appInputRestriction placeholder="Re-Password" id="reuserpassword"
+              name="reuserpassword" [(ngModel)]="loginObject.Re_userPassword" #userpassword="ngModel" required>
+          </mat-form-field>
+          <!-- Display message based on password match -->
+          <ng-container *ngIf="loginObject.Re_userPassword !== undefined">
+            <p *ngIf="loginObject.userPassword === loginObject.Re_userPassword; else mismatch" style="margin-top: -18px; color: green;">
+              Passwords are correct!
+            </p>
+            <ng-template #mismatch>
+              <p style="margin-top: -18px; color: red;">Passwords do not match!</p>
+            </ng-template>
+          </ng-container>
+
+
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label> Date of Birth </mat-label>
+            <input matInput [matDatepicker]="picker" name="dob" id="dob" [(ngModel)]="selectedDate"
+              (dateChange)="dateChanged($event)" placeholder="Date of Birth" [max]="maxDate" readonly required>
+            <mat-datepicker-toggle matSuffix [for]="picker" required></mat-datepicker-toggle>
+            <mat-datepicker #picker [disabled]="false"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select placeholder="Gender" id="gender" name="gender" #gender11="ngModel"
+              [(ngModel)]="loginObject.gender" required>
+              <mat-option *ngFor="let mod of GenderList" [value]="mod">{{mod}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="gender11.invalid && (gender11.dirty || gender11.touched)" style="color: red;">
+                <ng-container *ngIf="gender11.errors">
+                    Field is required.
+                </ng-container>
+            </mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label>User Role</mat-label>
+            <mat-select placeholder="User Role" id="role" name="role" #role="ngModel" [(ngModel)]="loginObject.roleName"
+              required>
+              <mat-option *ngFor="let mod of RoleList" [value]="mod">{{mod}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100" appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="phone" appInputRestriction placeholder="Phone Number" id="phoneNumber"
+              name="phoneNumber" [(ngModel)]="loginObject.phoneNumber" #phoneNumber="ngModel" required pattern="[0-9]*">
+            <mat-error *ngIf="phoneNumber.invalid && phoneNumber.dirty">
+              Please enter a valid phone number.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <button mat-raised-button class="btn-color" [ngStyle]="{'opacity': !CreateUser.form.valid ? '0.5' : '1'}"
+            [disabled]="!CreateUser.form.valid" (click)="SignUp();">SignUp</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

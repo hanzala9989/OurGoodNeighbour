@@ -1,0 +1,13 @@
+**/node_modules/
+**/README.md
+**/LICENSE
+**/.env
+**/.aws
+**/.editorconfig
+**/dist
+**/e2e
+**/.tmp
+**/.git
+**/*.log
+**/npm-debug.log
+**/yarn-error.log

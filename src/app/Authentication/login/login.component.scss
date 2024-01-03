@@ -1,0 +1,51 @@
+@import "../../../styles.scss";
+
+.loginContainer{
+  width: 500px;
+  margin: auto;
+  padding: 100px 10px 40px 10px;
+
+  h1,p,button{
+    margin-top: auto;
+    text-align: center;
+  }
+
+  h1{
+    color: var(--primary-color);
+    font-size: x-large !important;
+    font-weight: bold;
+  }
+  p{
+    font-size: 12px;
+  }
+}
+
+.buttonAlignment{
+  margin: 10px 0px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.btn-color{
+  padding: 10px 100px;
+}
+
+.container{
+  height: 92%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 960px) {
+  .loginContainer{
+    margin-top: 24%;
+    border-radius: 10px;
+  }
+}
+
+mat-card{
+  background-color: #f7efc540;
+}

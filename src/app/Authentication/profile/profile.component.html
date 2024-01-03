@@ -1,0 +1,21 @@
+<div class="wrapper cardResponsive" *ngIf="this.levels != 'profile'">
+  <div class="user-card">
+    <div class="user-card-img">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjxivAs4UknzmDfLBXGMxQkayiZDhR2ftB4jcIV7LEnIEStiUyMygioZnbLXCAND-I_xWQpVp0jv-dv9NVNbuKn4sNpXYtLIJk2-IOdWQNpC2Ldapnljifu0pnQqAWU848Ja4lT9ugQex-nwECEh3a96GXwiRXlnGEE6FFF_tKm66IGe3fzmLaVIoNL/s1600/img_avatar.png" alt="">
+    </div>
+    <mat-icon color="primary"style="margin-right: 20px; cursor: pointer;" matTooltip="Edit User" (click)="editUser();">edit</mat-icon>
+        <div class="user-card-info">
+          <h2><strong>{{userObject.username.toUpperCase()}}</strong></h2>
+          <p><span>Email:</span> {{userObject.userEmail}}</p>
+          <p><span>Role Name:</span> {{userObject.roleName}}</p> 
+          <p><span>Date of Birth:</span> {{commonService.getFormattedDate(userObject.dOB)}}</p> 
+          <p><span>Gender:</span> {{userObject.gender}}</p> 
+          <p><span>Phone Number:</span>{{userObject.phoneNumber}} </p>
+          <p><span>Account Status:</span> {{userObject.accountStatus}}</p>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="this.levels == 'profile'" class="cardResponsive">
+  <app-user [level]="levels" [userObject]="userObject"></app-user>
+</ng-container>

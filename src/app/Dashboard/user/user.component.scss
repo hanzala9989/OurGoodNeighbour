@@ -1,0 +1,85 @@
+@import '../../../styles.scss';
+
+
+.btn-color {
+    background-color: var(--button-background-color);
+    color: #fff;
+}
+
+table {
+    width: 100%;
+}
+
+tr.example-detail-row {
+    height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+}
+
+.example-element-row td {
+    border-bottom-width: 0;
+}
+
+.example-element-detail {
+    margin-top: 15px;
+    // overflow: hidden;
+    // display: flex;
+}
+
+.example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+}
+
+.example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+}
+
+.example-element-description {
+    padding: 16px;
+}
+
+.example-element-description-attribution {
+    opacity: 0.5;
+}
+
+@media (max-width: 960px) {
+    .cardResponsive {
+        margin-top: 150px;
+    }
+}
+
+
+.no-data-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .no-data-icon {
+    font-size: 4em;
+    color: #ff6961; /* You can change the color to your preference */
+  }
+  
+  .no-data-message {
+    margin-top: 10px;
+    font-size: 1.5em;
+    color: #777; /* You can change the color to your preference */
+  }
+  
+
+

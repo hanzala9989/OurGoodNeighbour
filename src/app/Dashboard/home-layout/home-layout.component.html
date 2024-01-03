@@ -1,0 +1,272 @@
+<!--FONT AWESOME-->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<!--ICONIFY-->
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+<!--GOOGLE FONTS-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Nunito+Sans:wght@200;300;400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
+<!--PLUGIN-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<style>
+  .flex_content {
+    padding: 2x;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (height/width) */
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .video-container {
+      padding-bottom: 75%; /* Adjust this value for other aspect ratios on mobile devices */
+    }
+  }
+
+  .typeing {
+    overflow: hidden; /* Hide overflowing content */
+    white-space: nowrap; /* Prevent text from wrapping */
+    border-right: 2px solid; /* Create a border on the right to simulate cursor */
+    animation: typing 3s steps(40) infinite; /* Typing animation */
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+</style>
+
+<body>
+  <menu>
+    <section class="details padding_1x">
+      <a href="javascript:void(0)"> (+000) 123 4567</a>
+      <a href="mailto:info@websitename.com"> info@websitename.com</a>
+      <a href="javascript:void(0)">
+        24971 Avenue Stanford, Santa Clarita, CA 91355</a
+      >
+      <a href="javascript:void(0)"> Every day, 6am - 6pm</a>
+    </section>
+    <section class="links padding_1x">
+      <a href="#">Home</a>
+      <a href="#">Recycling</a>
+      <a href="#">Contact us</a>
+      <a href="#">About us</a>
+    </section>
+  </menu>
+
+  <!--HEADER-->
+  <header>
+    <article>
+      <h1 class="title big typeing">
+        <em>Join the Movement</em> & <em></em> Make a Difference<em>.</em>
+      </h1>
+      <p>Serving, Teaching, Mentoring, and Leading: Events for All</p>
+      <a href="#More" class="btn btn_3">Explore more</a>
+    </article>
+  </header>
+
+  <!--MAIN-->
+  <main id="More">
+    <!--DIVISION_1-->
+    <div class="divisions division_1 flex padding_2x">
+      <section class="flex_content padding_2x">
+        <figure>
+          <img src="../../../assets/Image-1.jpg" alt="" loading="lazy" />
+        </figure>
+      </section>
+      <section class="flex_content padding_2x">
+        <article>
+          <h2 class="title medium">
+            Welcome to Our Good Neighbour's Community.
+          </h2>
+          <p>
+            This website helps you find and participate in volunteer events as
+            an individual or group. Browse our by category, location, and date
+            to discover the perfect one. Join food drives to donate to those in
+            need, voter registration drives to help people register to vote,
+            tutoring events to volunteer at underfunded schools, and more.
+            Whether you want to volunteer event or participate in one, our site
+            connects you with others to build community and create positive
+            change through service. If you would like to organize your own
+            event, please email us on the Help Desk. The admin will create your
+            event and you can get your friends, family, or coworkers involved.
+          </p>
+          <aside class="fixed_flex">
+            <span>
+              <h4 class="title small">2000+</h4>
+              <p>New volunteer</p>
+            </span>
+            <span>
+              <h4 class="title small">100+</h4>
+              <p>Event Organizer</p>
+            </span>
+          </aside>
+        </article>
+      </section>
+    </div>
+
+    <section class="flex_content">
+      <article class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/tYmvsrkN8po?rel=0"
+          allowfullscreen
+        ></iframe>
+      </article>
+    </section>
+
+    <!--DIVISION_2-->
+    <div class="divisions division_2 flex padding_2x">
+      <section class="flex_content padding_2x">
+        <figure>
+          <img src="../../../assets/Image-11.png" alt="" loading="lazy" />
+          <figcaption class="padding_1x">
+            <h2 class="title medium">What We Do?</h2>
+            <p>
+              Our Good Neighbours is a website that helps people find
+              and participate in volunteer events that make a difference in
+              their communities. We have a variety of indoor and outdoor events
+              to choose from, including food drives, voter registration drives,
+              tutoring events, environmental cleanup events, home repairs for
+              low-income families, mentoring programs, and more!
+              <br /><br />Whether you're interested in serving your community,
+              teaching others, or mentoring young people, we have a volunteer
+              opportunity for you. We also make it easy to organize your own
+              volunteer events, so you can get your friends, family, or
+              coworkers involved. <br /><br />No matter what your skills or
+              interests are, there is a way for you to volunteer and make a
+              difference in your community. Join us today!
+            </p>
+          </figcaption>
+        </figure>
+      </section>
+      <section class="flex_content cards padding_2x flex">
+        <figcaption class="padding_2x">
+          <h3 class="title small">How to Volunteer</h3>
+          <p>
+            Find events to participate in: Browse through our calendar of events
+            to find ones that interest you. You can search by category,
+            location, and date to find the perfect event to attend.
+          </p>
+        </figcaption>
+        <figure class="flex card">
+          <img src="../../../assets/Image-2.webp" alt="" loading="lazy" />
+        </figure>
+        <figcaption class="padding_2x">
+          <h3 class="title small">Distributing food to the poor</h3>
+          <p>
+            Gathering donated food and giving it to local groups that provide
+            meals for people who can't afford food.
+          </p>
+        </figcaption>
+        <figure class="flex card">
+          <img
+            src="../../../assets/Image-3.webp"
+            width="100"
+            height="390"
+            alt=""
+            loading="lazy"
+          />
+        </figure>
+        <figcaption class="padding_2x">
+          <h3 class="title small">Voter registration drive</h3>
+          <p>
+            Setting up tables in busy areas to give info and help people
+            register to vote in upcoming elections.
+          </p>
+        </figcaption>
+        <figure class="flex card">
+          <img src="../../../assets/Image-5.jpg" alt="" loading="lazy" />
+        </figure>
+        <figcaption class="padding_2x">
+          <h3 class="title small">Tutoring students at a local school</h3>
+          <p>
+            Volunteering to work with students at an underfunded school to help
+            them improve their academics.
+          </p>
+        </figcaption>
+        <figure class="flex card">
+          <img src="../../../assets/Image-6.jpg" alt="" loading="lazy" />
+        </figure>
+      </section>
+    </div>
+
+    <div class="divisions division_3 padding_4x">
+      <section class="flex padding_1x">
+        <figure>
+          <img
+            src="https://i.postimg.cc/T3vfL3G3/div-3.png"
+            alt=""
+            loading="lazy"
+          />
+        </figure>
+        <article>
+          <h3 class="title small">
+            Connect with other members: Send messages to other members, join
+            groups, and participate in discussions.
+          </h3>
+          <p>
+            No matter what your interests are, there's a social event for you.
+            So come join the Event Social Community Organizer website today and
+            start making a difference & much more...
+          </p>
+          We believe that social events are a powerful way to build community
+          and make a difference in the world. That's why we're committed to
+          making it easy for people to organize and participate in these events.
+          <a href="#" class="btn btn_1">Contact us</a>
+        </article>
+      </section>
+    </div>
+
+    <!--FOOTER-->
+    <footer class="flex">
+      <section class="flex_content padding_2x">
+        <a href="#"><i class="fa fa-facebook" style="color: #fff"></i></a>
+        <a href="#"><i class="fa fa-instagram" style="color: #fff"></i></a>
+        <a href="#"><i class="fa fa-linkedin" style="color: #fff"></i></a>
+        <a href="#"><i class="fa fa-youtube" style="color: #fff"></i></a>
+      </section>
+      <section class="flex_content">
+        <a href="#" style="color: #fff">Home</a>
+        <a href="#" style="color: #fff">Contact us</a>
+        <a href="#" style="color: #fff">About us</a>
+        <a href="#" style="color: #fff">Cookie Policy</a>
+      </section>
+      <section class="flex_content padding_1x">
+        <p style="color: #fff">
+          © 2023 Our Good Neighbour || All Copyright Rights
+        </p>
+      </section>
+    </footer>
+
+    <!--ADDITIONAL-->
+    <div class="additional flex"></div>
+    <a href="#" id="roll_back" class="animate"
+      ><i class="fa fa-angle-up"></i
+    ></a>
+  </main>
+</body>

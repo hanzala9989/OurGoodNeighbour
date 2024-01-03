@@ -1,0 +1,13 @@
+@import '../../../styles.scss';
+
+
+.btn-color {
+    background-color: var(--button-background-color);
+    color: #fff;
+}
+
+@media (max-width: 960px) {
+    .cardResponsive {
+        margin-top: 150px;
+    }
+}

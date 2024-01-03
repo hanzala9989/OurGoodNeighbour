@@ -1,0 +1,146 @@
+<mat-card class="cardResponsive">
+  <mat-card-header>
+      <mat-icon *ngIf="this.level == 'edit'" matRipple (click)="goBack();"
+      [matRippleCentered]="centered"
+      [matRippleDisabled]="disabled"
+      [matRippleUnbounded]="unbounded" style="margin-right: 12px;">arrow_back</mat-icon>
+    {{level === 'edit'? labels.Edit_Event : labels.Create_Event}}
+  </mat-card-header>
+  <mat-card-content>
+    <form #createEvent="ngForm">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="1%" fxLayoutAlign="flex-start">
+
+        <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+          fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+          <mat-label>Event Name</mat-label>
+          <input matInput placeholder="Event Name" name="eventName" id="eventName" #eventName="ngModel"
+            [(ngModel)]="saveEventObject.eventName" required>
+          <mat-error *ngIf="eventName.invalid && (eventName.dirty || eventName.touched)" style="color: red;">
+            <ng-container *ngIf="eventName.errors">
+              Field is required.
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+          fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+          <mat-label>Event Venue</mat-label>
+          <input matInput placeholder="Event Venue" name="eventVenue" id="eventVenue" #eventVenue="ngModel"
+            [(ngModel)]="saveEventObject.eventVenue" required>
+          <mat-error *ngIf="eventVenue.invalid && (eventVenue.dirty || eventVenue.touched)" style="color: red;">
+            <ng-container *ngIf="eventVenue.errors">
+              Field is required.
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+          fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+          <mat-label>No of Volunteer</mat-label>
+          <input matInput type="number" placeholder="No Of Volunteer" min="0" name="noOfGuest" id="noOfGuest"
+            #noOfGuest="ngModel" [(ngModel)]="saveEventObject.numberOfGuests" required>
+          <mat-error *ngIf="noOfGuest.invalid && (noOfGuest.dirty || noOfGuest.touched)" style="color: red;">
+            <ng-container *ngIf="noOfGuest.errors">
+              Field is required.
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+          fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+          <mat-label> Event Date </mat-label>
+          <input matInput [matDatepicker]="picker" name="event" id="event" [(ngModel)]="selectedDate"
+            (dateChange)="dateChanged($event)" #datepiker="ngModel" placeholder="Event Date" [min]="maxDate" [max]="minDate" readonly
+            required>
+          <mat-datepicker-toggle matSuffix [for]="picker" required></mat-datepicker-toggle>
+          <mat-datepicker #picker [disabled]="false"></mat-datepicker>
+          <mat-error *ngIf="datepiker.invalid && (datepiker.dirty || datepiker.touched)" style="color: red;">
+            <ng-container *ngIf="datepiker.errors">
+              Field is required.
+            </ng-container>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <mat-toolbar style="text-align: center;" *ngIf=" level == 'edit' && userObjectList.length === 0">
+      No Data Found
+    </mat-toolbar>
+
+    <mat-card *ngIf="userObjectList.length !== 0">
+      <mat-card-header>
+        Volunteered Users
+      </mat-card-header>
+      <mat-card-content>
+        <div class="mat-elevation-z8 table-container">
+          <table mat-table [dataSource]="dataSource" matSort *ngIf="userObjectList.length !== 0">
+            <!-- ID Column -->
+            <ng-container matColumnDef="userID">
+              <th mat-header-cell *matHeaderCellDef  fxFlex="16"> User ID </th>
+              <td mat-cell *matCellDef="let row" fxFlex="16"> {{row.userID}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="userName">
+              <th mat-header-cell *matHeaderCellDef  fxFlex="16"> User Name </th>
+              <td mat-cell *matCellDef="let row" fxFlex="16"> {{row.username}}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="roleName">
+              <th mat-header-cell *matHeaderCellDef  fxFlex="16"> Role Name </th>
+              <td mat-cell *matCellDef="let row" fxFlex="16"> {{row.roleName}} </td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="rewardPoint">
+              <th mat-header-cell *matHeaderCellDef  fxFlex="16"> Reward Point </th>
+              <td mat-cell *matCellDef="let row" fxFlex="16">
+                {{row.joiningEventUser[0].rewardPoint}}
+              </td>
+            </ng-container>
+
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="userAttended">
+              <th mat-header-cell *matHeaderCellDef  fxFlex="16"> Attendance </th>
+              <td mat-cell *matCellDef="let row" fxFlex="16">
+                <mat-checkbox [name]="'attendance_' + row.userID" *ngIf="!row.attendend"
+                  [id]="'attendance_' + row.userID" [(ngModel)]="row.userAttended"
+                  (change)="setAll($event.checked)"></mat-checkbox>
+                <span *ngIf="row.attendend" style="color: #5cb85c;">User Attended</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef  fxFlex="20"> Action </th>
+              <td mat-cell *matCellDef="let row" fxFlex="20">
+                <mat-icon color="primary" matTooltip="Remove User From Event" (click)="removeUserEvent(row);"
+                  *ngIf="!row.attendend">delete</mat-icon>
+                <mat-icon color="primary" matTooltip="Process User From Event" (click)="processUserEvent(row);"
+                  *ngIf="!row.attendend">check_circle</mat-icon>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4" fxFlex="100">No data matching the filter </td>
+            </tr>
+          </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" style="margin-top: 10px;"
+          aria-label="Select page of users"></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+
+    <button *ngIf="level !== 'edit'" mat-raised-button class="btn-color"
+      [ngStyle]="{'opacity': !createEvent.form.valid ? '0.5' : '1'}" [disabled]="!createEvent.form.valid"
+      (click)="saveEvent();">Submit</button>
+
+    <button *ngIf="level === 'edit'" mat-raised-button class="btn-color"
+      [ngStyle]="{'opacity': !createEvent.form.valid ? '0.5' : '1'}" [disabled]="!createEvent.form.valid"
+      (click)="updateEvent();">Update</button>
+  </mat-card-content>
+</mat-card>

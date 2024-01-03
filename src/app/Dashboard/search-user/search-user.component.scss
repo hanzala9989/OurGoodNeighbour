@@ -1,0 +1,62 @@
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-color {
+    background-color: red;
+    color: #fff;
+}
+
+.containerFilter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 960px) {
+    .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 960px) {
+    .cardResponsive {
+        margin-top: 150px;
+    }
+}
+
+.text {
+    display: block;
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.mat-mdc-table {
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.mat-column-name {
+    height: 100px;
+}
+
+th{
+    text-align: center;
+}

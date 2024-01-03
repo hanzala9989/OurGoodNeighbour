@@ -1,0 +1,72 @@
+<mat-card class="cardResponsive">
+    <mat-card-header>
+      <mat-icon *ngIf="this.level == 'edit'" matRipple (click)="goBack();"
+      [matRippleCentered]="centered"
+      [matRippleDisabled]="disabled"
+      [matRippleUnbounded]="unbounded" style="margin-right: 12px;">arrow_back</mat-icon>
+        {{level === 'edit'? labels.Edit_Contact : labels.Create_Contact}}
+    </mat-card-header>
+    <mat-card-content>
+        <form #createContact="ngForm">
+            <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="1%" fxLayoutAlign="flex-start">
+
+                <!-- <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100%"
+                    fxFlex.lt-md="100%" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" name="userEmail" id="userEmail" #userEmail="ngModel"
+                        [(ngModel)]="saveContactObject.email" required [readonly]="level === 'edit'">
+                    <mat-error *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)" style="color: red;">
+                        <ng-container *ngIf="userEmail.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field> -->
+
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="100%"
+                    fxFlex.lt-md="100%" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>Subject</mat-label>
+                    <input matInput placeholder="Subject" name="subject" id="subject" #subject="ngModel"
+                        [(ngModel)]="saveContactObject.subject" required [readonly]="level === 'edit'">
+                    <mat-error *ngIf="subject.invalid && (subject.dirty || subject.touched)" style="color: red;">
+                        <ng-container *ngIf="subject.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+                <h4 *ngIf="level === 'edit'">Help History</h4>
+                <div [innerHTML]="historyMessage" class="message" *ngIf="level === 'edit'"></div>
+
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="99%" fxFlex.lt-md="99%" fxFlex.lt-sm="99%" appearance="outline" *ngIf="level === 'edit'">
+                    <mat-label>Reply Message</mat-label>
+                    <div>
+                      <textarea matInput placeholder="Message" rows="2" name="message" id="message" #message="ngModel" [(ngModel)]="replyMessage"></textarea>
+                    </div>
+                    <mat-error *ngIf="message.invalid && (message.dirty || message.touched)" style="color: red;">
+                      <ng-container *ngIf="message.errors">
+                        Field is required.
+                      </ng-container>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="99%" fxFlex.lt-md="99%" fxFlex.lt-sm="99%" appearance="outline" *ngIf="level !== 'edit'">
+                    <mat-label> Message</mat-label>
+                    <div>
+                      <textarea matInput placeholder="Message" rows="20" name="message" id="message" #message="ngModel" [(ngModel)]="saveContactObject.message"></textarea>
+                    </div>
+                    <mat-error *ngIf="message.invalid && (message.dirty || message.touched)" style="color: red;">
+                      <ng-container *ngIf="message.errors">
+                        Field is required.
+                      </ng-container>
+                    </mat-error>
+                  </mat-form-field>
+                  
+                  
+            </div>
+        </form>
+        <button *ngIf="level !== 'edit'" mat-raised-button class="btn-color" [ngStyle]="{'opacity': !createContact.form.valid ? '0.5' : '1'}"
+            [disabled]="!createContact.form.valid" (click)="saveContact();">Send</button>
+
+        <button *ngIf="level === 'edit'" mat-raised-button class="btn-color" [ngStyle]="{'opacity': !createContact.form.valid ? '0.5' : '1'}"
+            [disabled]="!createContact.form.valid" (click)="updateContact();">Send</button>
+    </mat-card-content>
+</mat-card>

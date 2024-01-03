@@ -1,0 +1,108 @@
+@import '../../../styles.scss';
+
+.totalPoint {
+  position: relative;
+  left: 50%;
+}
+
+.btn-color {
+  background-color: var(--button-background-color);
+  color: #fff;
+}
+
+.pointsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+
+tr.example-detail-row {
+  height: 0;
+  text-align: center;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  margin-top: 15px;
+  // overflow: hidden;
+  // display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+@media (max-width: 960px) {
+  .cardResponsive {
+    margin-top: 150px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .totalPoint {
+    font-size: medium;
+  }
+
+  .pointsContainer {
+    flex-direction: column;
+    justify-content: center;
+    .mat-form-field,
+    h3 {
+      width: 100%;
+    }
+    h3 {
+      text-align: center;
+    }
+  }
+}
+
+.text {
+  display: block;
+  width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}

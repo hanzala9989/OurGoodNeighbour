@@ -1,0 +1,71 @@
+<mat-card class="cardResponsive">
+    <mat-card-header>
+        <mat-icon *ngIf="this.level == 'edit'" matRipple (click)="goBack();"
+        [matRippleCentered]="centered"
+        [matRippleDisabled]="disabled"
+        [matRippleUnbounded]="unbounded" style="margin-right: 12px;">arrow_back</mat-icon>
+        {{level === 'edit'? labels.Edit_Reward : labels.Create_Reward}}
+    </mat-card-header>
+    <mat-card-content>
+        <form #createEvent="ngForm">
+            <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="1%" fxLayoutAlign="flex-start">
+
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+                    fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+                    <mat-label>Rewards Name</mat-label>
+                    <input matInput placeholder="Rewards Name" name="rewadName" id="rewadName" #rewadName="ngModel"
+                        [(ngModel)]="saveRewardObject.rewardName" required>
+                    <mat-error *ngIf="rewadName.invalid && (rewadName.dirty || rewadName.touched)" style="color: red;">
+                        <ng-container *ngIf="rewadName.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)" appearance="outline">
+                    <mat-label>Reward Type</mat-label>
+                    <mat-select placeholder="Reward Type" id="rewardType" name="rewardType" #rewardType="ngModel"
+                        [(ngModel)]="saveRewardObject.rewardType" required>
+                        <mat-option *ngFor="let mod of rewardTypeList" [value]="mod">{{mod}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="rewardType.invalid && (rewardType.dirty || rewardType.touched)"
+                        style="color: red;">
+                        <ng-container *ngIf="rewardType.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)" appearance="outline">
+                    <mat-label>Reward Availability</mat-label>
+                    <mat-select placeholder="Reward Availability" id="rewardAvailability" name="rewardAvailability"
+                        #rewardAvailability="ngModel" [(ngModel)]="saveRewardObject.rewardAvailability" required>
+                        <mat-option *ngFor="let mod of rewardAvailabilityList" [value]="mod">{{mod}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="rewardAvailability.invalid && (rewardAvailability.dirty || rewardAvailability.touched)"
+                        style="color: red;">
+                        <ng-container *ngIf="rewardAvailability.errors">
+                            Field is required.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field  [floatLabel]="labels.floatLabel" fxFlex="0 1 calc(25% - 32px)"
+                fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" appearance="outline">
+                  <mat-label>Expiration Date</mat-label>
+                  <input matInput [matDatepicker]="picker" placeholder="Expiration Date" [(ngModel)]="selectedDates" [ngModelOptions]="{standalone: true}" readonly disabled/>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker [disabled]="true"></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </form>
+        <button *ngIf="level !== 'edit'" mat-raised-button class="btn-color" [ngStyle]="{'opacity': !createEvent.form.valid ? '0.5' : '1'}"
+            [disabled]="!createEvent.form.valid" (click)="saveReward();">Submit</button>
+
+        <button *ngIf="level === 'edit'" mat-raised-button class="btn-color" [ngStyle]="{'opacity': !createEvent.form.valid ? '0.5' : '1'}"
+            [disabled]="!createEvent.form.valid" (click)="updateReward();">Update</button>
+    </mat-card-content>
+</mat-card>
