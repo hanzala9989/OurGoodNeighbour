@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_IMAGE = 'node:14'
+        CONTAINER_NAME = 'angular-app'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Checkout your Angular code from version control
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Build Angular App') {
+            steps {
+                script {
+                    // Build the Angular app
+                    docker.image(DOCKER_IMAGE).inside {
+                        sh 'npm install'
+                        sh 'ng build --prod'
+                    }
+                }
+            }
+        }
+
+        stage('Dockerize Angular App') {
+            steps {
+                script {
+                    // Build a Docker image for the Angular app
+                    docker.build(CONTAINER_NAME, '-f Dockerfile-angular .')
+                }
+            }
+        }
+
+        stage('Deploy Angular App') {
+            steps {
+                script {
+                    // Deploy the Angular app (replace with your deployment steps)
+                    docker.withRegistry('', 'dockerhub_credentials') {
+                        docker.image(CONTAINER_NAME).push()
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Cleanup - remove the Docker container
+            script {
+                docker.image(CONTAINER_NAME).remove(force: true)
+            }
+        }
+    }
+}
